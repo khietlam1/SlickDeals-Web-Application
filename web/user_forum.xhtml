@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="refresh"/>
+        <style type="text/css">
+            .sub-header {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 10px;
+            }
+            .navbar-fixed-top {
+                border: 0 none;
+            }
+            .sidebar {
+                display: none;
+            }
+            @media (min-width: 768px) {
+                .sidebar {
+                    background-color: #f5f5f5;
+                    border-right: 1px solid #eee;
+                    bottom: 0;
+                    display: block;
+                    left: 0;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    padding: 20px;
+                    position: fixed;
+                    top: 51px;
+                    z-index: 1000;
+                }
+            }
+            .nav-list {
+                margin-bottom: 20px;
+                margin-left: -20px;
+                margin-right: -21px;
+            }
+            .nav-list > li > a {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .nav-list > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+                background-color: #428bca;
+                color: #fff;
+            }
+            .main {
+                padding: 20px;
+            }
+            @media (min-width: 768px) {
+                .main {
+                    padding-left: 40px;
+                    padding-right: 40px;
+                }
+            }
+            .main .page-header {
+                margin-top: 0;
+            }
+            .placeholders {
+                margin-bottom: 30px;
+                text-align: center;
+            }
+            .placeholders h4 {
+                margin-bottom: 0;
+            }
+            .placeholder {
+                margin-bottom: 20px;
+            }
+            .placeholder img {
+                border-radius: 50%;
+                display: inline-block;
+            }
+        </style>
+
+    </h:head>
+    <h:body  style="padding-top: 30px">
+        <b:navBar brand="SLICKDEALS" brandHref="#" fixed="top"  fluid="true" inverse="true">
+            <b:navbarLinks>
+
+                <b:navLink value="Home" outcome="welcome.xhtml"></b:navLink>
+                <b:navLink value="About" href="about.xhtml"></b:navLink>
+                <b:navLink value="Forum" outcome="user_forum.xhtml"></b:navLink>
+
+            </b:navbarLinks>
+            <b:navbarLinks pull="right">
+                <b:dropMenu value="Hello, #{login.accid}!">
+                    <b:navLink value="View Profile" outcome="user_profile.xhtml"></b:navLink>
+                    <b:navLink></b:navLink>
+                        <h:form> <b:commandButton look="danger" value="Log out" action="#{login.current_session.signOut()}"/></h:form>
+                </b:dropMenu>
+
+            </b:navbarLinks>
+        </b:navBar>
+        <b:container fluid="true">
+
+            <b:row>
+                <b:column col-md="12" styleClass="main">
+
+                    <h1>Forum Hello, #{login.getAccid()}!</h1>
+                    <hr/>
+                    <b:row>
+                        <b:column col-md="3">
+                            <h:form>
+                                <b:commandButton look="primary btn-block" value="Create Thread" size="md" action="newThread.xhtml"/>
+                            </h:form>
+                        </b:column>
+                    </b:row>
+                           <br/>
+ <h:form>
+                <b:row>
+                    <b:column col-md="3" style="padding-right:0">
+                      
+                    <b:inputText class="form-control"
+                                 value="#{login.current_session.searchParam}"
+                                 placeholder="search keyword...">
+                    </b:inputText>
+                                        
+
+                    </b:column>
+                    <b:column col-md="3" style="padding-left:0">  <b:commandButton class="btn btn-primary" id="submit" size="md" iconAwesome="search"  action="user_forum.xhtml" />
+</b:column>
+                    
+                </b:row>
+ </h:form>
+
+                    <b:row styleClass="table-responsive">
+                        <h:dataTable styleClass="table table-striped" 
+                                     rows ="#{login.current_session.allThreads.size()}" 
+                                     value="#{login.current_session.allThreads}"  var="thread">
+                            <h:column>  
+                                <f:facet name="header">Topic</f:facet>
+                                 <h:form><h:commandLink value="#{thread.title}" action="#{login.current_session.getthreaddetail(thread.threadid)}" /></h:form>
+                            </h:column> 
+
+                            <h:column>
+                                <f:facet name="header">Content</f:facet>
+                                <h:outputText styleClass="dataTableOutputText" 
+                                              value="#{thread.content}"/>  
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Author</f:facet>
+                                <h:outputText styleClass="dataTableOutputText" 
+                                              value="#{thread.author}"/>  
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Rating</f:facet>
+                                 <b:icon style="color:yellow" value="star"/><h:outputText styleClass="dataTableOutputText" 
+                                              value="#{thread.rating}"/>  
+                            </h:column>
+                           <h:column>  
+                                  <f:facet name="header">Replies</f:facet>
+                                  <h:outputText value="#{login.current_session.getReplies(thread.threadid).size()}"/>                                
+                            </h:column>
+                        </h:dataTable>
+                    </b:row>
+
+
+                </b:column>
+            </b:row>
+        </b:container> 
+
+
+
+    </h:body>
+</html>
+

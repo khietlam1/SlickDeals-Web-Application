@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+      
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <meta http-equiv="refresh"/>
+       <style type="text/css">
+            .form-signin {
+               
+                max-width: 330px;
+                padding: 15px;
+            }
+             .sidebar {
+            display: none;
+        }
+        @media ( min-width: 768px) {
+        .sidebar {
+      
+            display: block;
+            left: 0;
+            padding:0;
+            margin-left: 20px;
+            margin:0;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: fixed;
+            z-index: 1000;
+        }
+        .sidebar.img{
+            padding:0;
+            margin:0;
+        }
+        .main{
+            padding:40px;
+        }
+        @media (min-width: 400px) {
+        .main {
+            padding-left: 40px;
+            padding-right: 20px;
+        }
+        }
+        </style>
+    </h:head>
+    <h:body style="padding-top: 30px">
+         <b:navBar brand="SLICKDEALS" brandHref="#" fixed="top"  fluid="true" inverse="true">
+            <b:navbarLinks>
+              
+                <b:navLink value="Home" outcome="index.xhtml"></b:navLink>
+              
+              </b:navbarLinks>
+               
+          </b:navBar>
+        
+      <b:container fluid="true">
+          <b:row >
+            <b:column  col-md="6" styleClass="sidebar">
+               
+                    <img src="./resources/pics/xmas.jpg" class="img-responsive"/>
+                
+                </b:column>
+              
+               <b:column  col-md="6" styleClass="main">
+            <h:form styleClass="form-signin" prependId="false">
+                <h2 class="form-signin-heading">Join us for more good deals!</h2>
+                <b:inputText id="email" placeholder="account ID"
+                             value="#{signup.accid}"
+                      required="true"
+                     requiredMessage="Required username">
+            <f:validateLength minimum="3" maximum="20"/>
+                    <f:facet name="prepend">
+                        <b:icon name="user" />
+                    </f:facet>
+                </b:inputText>
+                <b:inputText id="password" placeholder="Password" type="password"
+                             value="#{signup.pw}"
+                      required="true"
+                     requiredMessage="Required username">
+            <f:validateLength minimum="3" maximum="20"/>
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="key" />
+                    </f:facet>
+                </b:inputText>
+                <b:commandButton look="primary btn-block" value="Sign up" size="lg" action="signup_confirmation.xhtml"/>
+            </h:form>
+                  
+                        <b:navLink value="Already have an account?" outcome="login.xhtml"></b:navLink>            
+                 
+               </b:column>
+          </b:row>
+        </b:container>
+        
+    </h:body>
+</html>

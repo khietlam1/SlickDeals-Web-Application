@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+       <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+          <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+<h:outputStylesheet library="css" name="custom.css"/>  
+ <style type="text/css">
+   
+        .placeholders {
+            margin-top:100px;
+            text-align: center;
+        }
+        img{
+            align-content: center;
+        }
+      
+        .placeholder img {
+            border-radius: 5%;
+            width:400px;
+            height: 200px;
+            display: inline-block;
+        }
+        jumbotron{
+            text-align: center;
+        }
+        .divthread{
+            padding:60px;
+            margin:40px;
+            align-content: center;
+        }
+        </style>
+    </h:head>
+    
+    <h:body  style="padding-top: 30px">
+        <b:navBar brand="SLICKDEALS" brandHref="#" fixed="top"  fluid="true" inverse="true">
+            <b:navbarLinks >
+                <b:navLink value="Home" outcome="welcome.xhtml"></b:navLink>
+                <b:navLink value="About" href="about.xhtml"></b:navLink>
+                 <b:navLink value="Forum" outcome="#{login.type}_forum.xhtml"></b:navLink>      
+              </b:navbarLinks>    
+             <b:navbarLinks pull="right">
+                <b:dropMenu value="Hello, #{login.accid}!">
+                    <b:navLink value="View Profile" outcome="user_profile.xhtml"></b:navLink>
+                    <b:navLink></b:navLink>
+                    <h:form> <b:commandButton value="Log out" action="#{login.current_session.signOut()}"></b:commandButton></h:form>
+                </b:dropMenu>
+
+            </b:navbarLinks>
+          </b:navBar>
+        <b:container  styleClass="divthread" fluid="true">
+            <b:row>
+                <b:column col-md="6">
+                    <h1>Create New Thread</h1>
+                    <h:form>
+                      <b:inputText 
+                             value="#{createThread.title}"
+                             placeholder="Title"
+                             label="Title"
+                             validatorMessage="The title must be between 3 and 20 characters"
+                             required="true">
+                    <f:validateLength maximum="20" minimum="1" />
+                      </b:inputText>
+                       <b:inputText 
+                             value="#{createThread.content}"
+                             placeholder="Content"
+                             label="Content"
+                             validatorMessage="The title must be between 5 and 50 characters"
+                             required="true">
+                    <f:validateLength maximum="50" minimum="5" />
+                       </b:inputText>
+                       <b:commandButton  look="primary btn-block" value="Create Thread" size="md" action="#{createThread.createThread(login.accid)}"/>
+                    </h:form>
+                </b:column>
+            </b:row>
+        </b:container>
+       
+
+
+    </h:body>
+</html>
+

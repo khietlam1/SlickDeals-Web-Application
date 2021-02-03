@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="custom.css"/>
+        <style type="text/css">
+
+            .placeholders {
+                margin-top:100px;
+                text-align: center;
+            }
+            img{
+                align-content: center;
+            }
+            .signpanel{
+                 margin: 0 auto;
+                
+                padding: 15px;
+            }
+            .placeholder img {
+                border-radius: 5%;
+                width:400px;
+                height: 200px;
+                display: inline-block;
+            }
+            .parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+        </style>
+    </h:head>
+
+    <h:body style=" padding-top: 30px">
+        <b:navBar brand="SLICKDEALS" fixed="top"  fluid="true" inverse="true">
+           
+        </b:navBar>
+
+
+
+        <b:container fluid="true" >
+            <b:row>
+             
+                    <b:carousel id="tiovivo" interval="3000" >
+                         <b:carouselItem>
+                           
+                                <img src="./resources/pics/banner8.jpg" class="img-responsive"/>
+                        
+                        </b:carouselItem>
+                         <b:carouselItem>
+                           
+                                <img src="./resources/pics/banner6.jpg" class="img-responsive"/>
+                        
+                        </b:carouselItem>
+
+                        <b:carouselItem>
+                           
+                                <img src="./resources/pics/banner7.jpg" class="img-responsive"/>
+                        
+                        </b:carouselItem>
+                     
+                    </b:carousel>
+             
+            </b:row>
+            <b:row>
+                <h:form class="signpanel">
+                    <div class="parent form-group">
+                        <b:commandButton  size="lg" look="success" col-md="4" value="Sign Up"  action="register.xhtml"  />
+                        <b:commandButton size="lg" look="info" col-md="4" value="Log In"  action="login.xhtml" /> 
+                    </div>
+                </h:form>
+            </b:row>
+
+
+        </b:container>
+ 
+       
+
+
+    </h:body>    
+</html>
+

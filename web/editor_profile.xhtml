@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+       <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+          <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+<h:outputStylesheet library="css" name="custom.css"/>  
+ 
+    </h:head>
+    
+    <h:body  style="padding-top: 30px">
+        <b:navBar brand="SLICKDEALS" brandHref="#" fixed="top"  fluid="true" inverse="true">
+            <b:navbarLinks>
+              
+                <b:navLink value="Home" outcome="welcome.xhtml"></b:navLink>
+                <b:navLink value="About" href="about.xhtml"></b:navLink>
+                 <b:navLink value="Forum" outcome="editor_forum.xhtml"></b:navLink>
+               
+              </b:navbarLinks>
+                <b:navbarLinks pull="right">
+                    <b:dropMenu value="Hello, #{login.accid}!">
+                        <b:navLink value="View Profile" outcome="#{login.type}_profile.xhtml"></b:navLink>
+                        <b:navLink></b:navLink>
+                        <h:form> <b:commandButton look="danger" value="Log out" action="#{login.current_session.signOut()}"/></h:form>
+                    </b:dropMenu>
+               
+            </b:navbarLinks>
+          </b:navBar>
+    
+        <b:container fluid="true" style="padding-top: 30px">
+          
+            <h1>Profile Summary</h1>
+            <hr/>
+            <table>
+                <tr>
+                    <td>Account ID: </td>
+                    <td>#{login.accid}</td>
+                </tr>
+                <tr>
+                    <td>Account Type: </td>
+                    <td>#{login.type}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <h3>Notifications:</h3>
+                        <hr/>
+                        <p>You have #{login.current_session.getqualifiedthreadids().size()} threads to review</p>
+                    <h:form><b:commandButton look="primary btn-block" value="Review Thread" size="md" action="editor_notification"/></h:form></td>
+                </tr>
+            </table>
+           
+        </b:container>
+      
+    </h:body>
+</html>

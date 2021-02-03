@@ -1,0 +1,167 @@
+<!--Group File week 3-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+       <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+          <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+<h:outputStylesheet library="css" name="custom.css"/>  
+ <style type="text/css">
+   
+        .placeholders {
+            margin-top:100px;
+            text-align: center;
+        }
+        img{
+            align-content: center;
+        }
+      
+        .placeholder img {
+            border-radius: 5%;
+            width:400px;
+            height: 200px;
+            display: inline-block;
+        }
+        </style>
+    </h:head>
+    
+    <h:body  style="padding-top: 30px">
+        <b:navBar brand="SLICKDEALS" brandHref="#" fixed="top"  fluid="true" inverse="true">
+            <b:navbarLinks>
+              
+                <b:navLink value="Home" outcome="welcome.xhtml"></b:navLink>
+                <b:navLink value="About" href="about.xhtml"></b:navLink>
+                 <b:navLink value="Forum" outcome="#{login.type}_forum.xhtml"></b:navLink>
+               
+              </b:navbarLinks>
+                <b:navbarLinks pull="right">
+                    <b:dropMenu value="Hello, #{login.accid}!">
+                        <b:navLink value="View Profile" outcome="#{login.type}_profile.xhtml"></b:navLink>
+                        <b:navLink></b:navLink>
+                        <h:form> <b:commandButton look="danger" value="Log out" action="#{login.current_session.signOut()}"/></h:form>
+                    </b:dropMenu>
+               
+            </b:navbarLinks>
+          </b:navBar>
+      <b:container fluid="true" >
+          <b:row>
+             
+     <b:carousel id="tiovivo" interval="3000" >
+         <b:carouselItem>
+        <b:container fluid="true" style="height:520px; padding:0px"  >
+    <img src="./resources/pics/banner1.jpg" class="img-responsive"/>
+        </b:container>
+       
+  </b:carouselItem>
+  <b:carouselItem >
+      <b:container fluid="true" style="height:520px"  >
+  <b:row styleClass="placeholders" >
+       <b:column  col-sm="3" styleClass="placeholder">
+        <h:dataTable  rows ="1" value="#{login.current_session.bestthreads[0]}"  var="thread">
+            <h:column>
+                       
+            <img src="./resources/pics/cricut.jpg" class="img-responsive"/>
+            <h4> <h:form>
+                   <h:commandLink value="#{thread.title}" action="#{login.current_session.getthreaddetail(thread.threadid)}"/>
+               </h:form></h4>
+            <span class="text-muted">  <h:outputText styleClass="dataTableOutputText" value="#{thread.content}"/> </span>
+            <p><b:icon style="color:yellow" value="star"/><h:outputText styleClass="dataTableOutputText" value="#{thread.rating}"/></p>
+            </h:column>
+        </h:dataTable>
+             </b:column>
+      <b:column  col-sm="3" styleClass="placeholder">
+       <h:dataTable  rows ="1" value="#{login.current_session.bestthreads[1]}"  var="thread">
+            <h:column>
+                       
+            <img src="./resources/pics/lipstick.jpg" class="img-responsive"/>
+           <h4> <h:form>
+                   <h:commandLink value="#{thread.title}" action="#{login.current_session.getthreaddetail(thread.threadid)}"/>
+               </h:form> </h4>
+            <span class="text-muted">  <h:outputText styleClass="dataTableOutputText" value="#{thread.content}"/> </span>
+            <p><b:icon style="color:yellow" value="star"/><h:outputText styleClass="dataTableOutputText" value="#{thread.rating}"/></p>
+            </h:column>
+        </h:dataTable>
+        </b:column>
+      <b:column  col-sm="3" styleClass="placeholder">
+       <h:dataTable  rows ="1" value="#{login.current_session.bestthreads[2]}"  var="thread">
+            <h:column>
+                       
+            <img src="./resources/pics/mixer.jpg" class="img-responsive"/>
+            <h4> <h:form>
+                   <h:commandLink value="#{thread.title}" action="#{login.current_session.getthreaddetail(thread.threadid)}"/>
+               </h:form></h4>
+            <span class="text-muted">  <h:outputText styleClass="dataTableOutputText" value="#{thread.content}"/> </span>
+            <p><b:icon style="color:yellow" value="star"/><h:outputText styleClass="dataTableOutputText" value="#{thread.rating}"/></p>
+            </h:column>
+        </h:dataTable>
+        </b:column>
+      <b:column  col-sm="3" styleClass="placeholder">
+       <h:dataTable  rows ="1" value="#{login.current_session.bestthreads[3]}"  var="thread">
+            <h:column>
+                       
+            <img src="./resources/pics/choco.jpg" class="img-responsive"/>
+           <h4> <h:form>
+                   <h:commandLink value="#{thread.title}" action="#{login.current_session.getthreaddetail(thread.threadid)}"/>
+               </h:form></h4>
+            <span class="text-muted">  <h:outputText styleClass="dataTableOutputText" value="#{thread.content}"/> </span>
+            <p><b:icon style="color:yellow" value="star"/><h:outputText styleClass="dataTableOutputText" value="#{thread.rating}"/></p>
+            </h:column>
+        </h:dataTable>
+        </b:column>
+                    </b:row>
+      </b:container>
+      <b:carouselCaption style="color:black"><h2>Featured Deals this week</h2></b:carouselCaption>
+  </b:carouselItem>        
+
+</b:carousel>
+            
+          </b:row>
+          
+          
+      </b:container>
+      
+           <b:container fluid="true">
+                 <h1>All Best Deals</h1>
+            <b:row>
+                <b:column col-md="12" styleClass="main">
+                    <b:row styleClass="table-responsive">
+                        <h:dataTable styleClass="table table-striped" 
+                                     rows ="#{login.current_session.bestthreads.size()}" 
+                                     value="#{login.current_session.bestthreads}"  var="thread">
+                            <h:column>  
+                                <f:facet name="header">Topic</f:facet>
+                               <h:form><h:commandLink value="#{thread.title}" action="#{login.current_session.getthreaddetail(thread.threadid)}" /></h:form>
+                            </h:column> 
+
+                            <h:column>
+                                <f:facet name="header">Content</f:facet>
+                                <h:outputText styleClass="dataTableOutputText" 
+                                              value="#{thread.content}"/>  
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Author</f:facet>
+                                <h:outputText styleClass="dataTableOutputText" 
+                                              value="#{thread.author}"/>  
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Rating</f:facet>
+                                 <b:icon style="color:yellow" value="star"/><h:outputText styleClass="dataTableOutputText" 
+                                              value="#{thread.rating}"/>  
+                            </h:column>
+                         
+                        </h:dataTable>
+                    </b:row>
+
+
+                </b:column>
+            </b:row>
+        </b:container> 
+   
+      
+    </h:body>
+</html>
